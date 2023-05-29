@@ -1,4 +1,4 @@
-const redis = require('ioredis')
+const Redis = require('ioredis')
 const { REDIS_CONF } = require('../conf/db')
 
 // 创建 Redis 客户端实例
@@ -16,7 +16,8 @@ function set(key, val) {
   if (typeof val === 'object') {
     val = JSON.stringify(val)
   }
-  redis.set(key, val, redis.print)
+  console.log('set key', key, val, redis.print);
+  redis.set(key, val)
 }
 
 function get(key) {

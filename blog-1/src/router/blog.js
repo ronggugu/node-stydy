@@ -7,6 +7,7 @@ const {
 } = require("../controller/blog");
 const { SuccessModel, ErrorModel } = require("../model/resModel");
 
+
 // 统一的登录验证函数
 const loginCheck = (req) => {
   if (!req.session.username) {
@@ -23,7 +24,7 @@ const handleBlogRouter = (req, res) => {
 
   // 获取列表
   if (method === "GET" && path === "/api/blog/list") {
-    const author = req.query.author || "";
+    const author = req.session.username || "";
     const keyword = req.query.keyword || "";
     const result = getList(author, keyword);
     return result.then((listData) => {
